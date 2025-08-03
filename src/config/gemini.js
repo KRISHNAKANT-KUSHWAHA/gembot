@@ -6,8 +6,8 @@ const ai = new GoogleGenerativeAI("AIzaSyBKPZSIkouGc5LiVcb4OI7ipk9jAe6FjXs"); //
 
 export async function getGeminiResponse(prompt) {
   try {
-    const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" 
-      
+     
+      const model = ai.getGenerativeModel({ model: "gemini-1.5-flash"
     });
 
     const result = await model.generateContentStream({
