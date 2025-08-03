@@ -68,7 +68,7 @@ const Main = () => {
         {/* ✅ Show Gemini response instead */}
         {response && (
           <div className="response-box">
-            <h3>GemBot working</h3>
+            <h3>GemBot</h3>
             <p>{response}</p>
           </div>
         )}
