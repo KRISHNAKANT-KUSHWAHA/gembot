@@ -106,7 +106,7 @@ const Main = () => {
           </div>
           <div className="bottom-info">
             <p>{loading ? "Gemini is thinking..." : "Ask anything you want!"}</p>
-            <h4>made with ❤️ Krishnakant</h4>
+            <h4>made with ❤️ by Krishnakant</h4>
           </div>
         </div>
       </div>
