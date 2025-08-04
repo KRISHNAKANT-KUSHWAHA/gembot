@@ -1,32 +1,35 @@
 import { useState } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
-import { getGeminiResponse } from "../../config/gemini"; // ✅ Ensure this is correct
+import { getGeminiResponse } from "../../config/gemini"; // ✅ Ensure this works
 
 const Main = () => {
   const [input, setInput] = useState("");
-  const [response, setResponse] = useState("");
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
-
 
   const handleSend = async () => {
     if (!input.trim()) return;
 
+    const userMessage = { sender: "user", text: input };
+    setMessages((prev) => [...prev, userMessage]);
     setLoading(true);
-    setResponse("Thinking...");
+    setInput("");
 
     try {
       const result = await getGeminiResponse(input);
-      console.log("Gemini result:", result);
-      setResponse(result);
+      const botMessage = { sender: "gembot", text: result };
+      setMessages((prev) => [...prev, botMessage]);
     } catch (err) {
-      setResponse("❌ Gemini couldn't respond properly.");
+      const errorMessage = {
+        sender: "gembot",
+        text: "❌ Gemini couldn't respond properly.",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     }
 
     setLoading(false);
-    setInput(""); // clear input
   };
-  
 
   return (
     <div className="main">
@@ -36,11 +39,12 @@ const Main = () => {
       </div>
 
       <div className="main-container">
-        {/* ✅ Hide container if there's a response */}
-        {!response && (
+        {messages.length === 0 && (
           <div className="container">
             <div className="greet">
-              <p><span>Hello, kk.</span></p>
+              <p>
+                <span>Hello, kk.</span>
+              </p>
               <p>How can I help you today?</p>
             </div>
 
@@ -65,11 +69,18 @@ const Main = () => {
           </div>
         )}
 
-        {/* ✅ Show Gemini response instead */}
-        {response && (
-          <div className="response-box">
-            <h3>GemBot</h3>
-            <p>{response}</p>
+        {/* ✅ Chatbox showing conversation */}
+        {messages.length > 0 && (
+          <div className="chat-box">
+            {messages.map((msg, index) => (
+              <div
+                key={index}
+                className={msg.sender === "user" ? "user-message" : "bot-message"}
+              >
+                <p>{msg.text}</p>
+              </div>
+            ))}
+            {loading && <div className="loader">GemBot is typing...</div>}
           </div>
         )}
 
@@ -93,10 +104,10 @@ const Main = () => {
               />
             </div>
           </div>
-          <p className="bottom-info">
-            {loading ? "Gemini is thinking..." : "Ask anything you want!"}
-            <h4>made with ❤️Krishnakant</h4>
-          </p>
+          <div className="bottom-info">
+            <p>{loading ? "Gemini is thinking..." : "Ask anything you want!"}</p>
+            <h4>made with ❤️ Krishnakant</h4>
+          </div>
         </div>
       </div>
     </div>
