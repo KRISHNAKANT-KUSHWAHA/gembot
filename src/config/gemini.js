@@ -2,13 +2,13 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const ai = new GoogleGenerativeAI("AIzaSyBKPZSIkouGc5LiVcb4OI7ipk9jAe6FjXs"); // replace with your valid key
+const ai = new GoogleGenerativeAI("AIzaSyBD62xSSMyFYCrSnFvEvFvLt3ZKmQ7vBtM"); // replace with your valid key
 
 export async function getGeminiResponse(prompt) {
   try {
-const model = ai.getGenerativeModel({
-  model: "gemini-1.5-flash",
-  systemInstruction: `
+    const model = ai.getGenerativeModel({
+      model: "gemini-1.5-flash",
+      systemInstruction: `
     Respond to any query or question using full sentences.
     Do not use * or ** for emphasis.
     If emphasizing something, use line breaks and clear text formatting like:
@@ -16,8 +16,7 @@ const model = ai.getGenerativeModel({
     - Use colons and spacing for structure (e.g., "Reasoning: The policy...")
     Avoid markdown-style formatting. Keep everything in plain text.
   `,
-});
-
+    });
 
     const result = await model.generateContentStream({
       contents: [{ role: "user", parts: [{ text: prompt }] }],
@@ -36,7 +35,7 @@ const model = ai.getGenerativeModel({
 
     return responseText;
   } catch (err) {
-    console.error("Gemini Error:", err);
-    return "❌ Gemini failed to respond.";
+    console.error("Gembot Error:", err);
+    return "❌ Gembot failed to respond.";
   }
 }
