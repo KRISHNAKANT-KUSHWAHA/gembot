@@ -2,7 +2,7 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const ai = new GoogleGenerativeAI("AIzaSyBD62xSSMyFYCrSnFvEvFvLt3ZKmQ7vBtM"); // replace with your valid key
+const ai = new GoogleGenerativeAI("AIzaSyB7kIkVqYlTR3lWe90FhKPDfximpv0SKnE"); // replace with your valid key
 
 export async function getGeminiResponse(prompt) {
   try {
