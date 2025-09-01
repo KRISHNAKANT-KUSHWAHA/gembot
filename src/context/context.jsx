@@ -1,28 +1,51 @@
-// import React, { createContext, useContext } from "react";
+// src/context/context.jsx
+import { createContext, useState, useEffect } from "react";
 
-// // Create context
-// const AppContext = createContext();
+export const ChatContext = createContext();
 
-// // Create provider
-// export const AppProvider = ({ children }) => {
-//   const formatResponse = (text) => {
-//     if (!text) return "";
+export const ChatProvider = ({ children }) => {
+  const [chats, setChats] = useState([]);
+  const [activeChat, setActiveChat] = useState(null);
 
-//     // Make **bold**
-//     const boldFormatted = text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+  // ✅ Start with a default chat
+  useEffect(() => {
+    if (chats.length === 0) {
+      const firstChat = { id: Date.now(), title: "New Chat", messages: [] };
+      setChats([firstChat]);
+      setActiveChat(firstChat);
+    }
+  }, [chats]);
 
-//     // Replace * with <br/> for line breaks
-//     const lineBreaksFormatted = boldFormatted.replace(/\*/g, "<br/>");
+  // ✅ Start a brand-new chat
+  const startNewChat = () => {
+    const newChat = { id: Date.now(), title: "New Chat", messages: [] };
+    setChats((prev) => [newChat, ...prev]);
+    setActiveChat(newChat);
+  };
 
-//     return lineBreaksFormatted;
-//   };
+  // ✅ Update active chat with messages
+  const updateActiveChat = (messages) => {
+    setActiveChat((prev) => {
+      if (!prev) return prev;
+      const updatedChat = {
+        ...prev,
+        title: messages.find((m) => m.sender === "user")?.text || "New Chat",
+        messages,
+      };
 
-//   return (
-//     <AppContext.Provider value={{ formatResponse }}>
-//       {children}
-//     </AppContext.Provider>
-//   );
-// };
+      setChats((prevChats) =>
+        prevChats.map((chat) => (chat.id === prev.id ? updatedChat : chat))
+      );
 
-// // Custom hook
-// export const useAppContext = () => useContext(AppContext);
+      return updatedChat;
+    });
+  };
+
+  const selectChat = (chat) => setActiveChat(chat);
+
+  return (
+    <ChatContext.Provider value={{ chats, activeChat, selectChat, startNewChat, updateActiveChat }}>
+      {children}
+    </ChatContext.Provider>
+  );
+};
