@@ -42,6 +42,7 @@ src/
 ├── App.jsx # Root app component
 ├── App.css
 └── main.jsx # React entry point
+----------------------------------------------
 
 🔮 Future Improvements
 
