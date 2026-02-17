@@ -65,7 +65,7 @@ gembot/
 └── README.md
 ---
 
-⚙️ Installation & Setup
+### ⚙️ Installation & Setup
 1️⃣ Clone the Repository
 git clone <YOUR_GITHUB_REPO_LINK>
 cd gembot
@@ -76,34 +76,20 @@ npm install
 3️⃣ Run the Development Server
 npm run dev
 
-
+---
 App will run at:
 
 http://localhost:5173
 
-🔐 Environment Variables (IMPORTANT)
-
-⚠️ Your current project contains a hardcoded API key inside gemini.js.
-This is a security risk and should be fixed immediately.
-
-❌ Current (Not Secure)
-const ai = new GoogleGenerativeAI("YOUR_API_KEY");
-
-✅ Recommended Secure Setup
+## 🔐 Environment Variables (IMPORTANT)
 
 Create a .env file in the root folder:
 
 VITE_GEMINI_API_KEY=your_api_key_here
 
+---
 
-Then update gemini.js:
-
-const ai = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-
-
-🚨 Never push API keys to GitHub.
-
-🧑‍💻 Usage Instructions
+### 🧑‍💻 Usage Instructions
 
 Open the application.
 
@@ -113,7 +99,8 @@ Click send or press Enter.
 
 View AI-generated response.
 
-Optionally:
+---
+## Optionally:
 
 🎤 Use voice input
 
@@ -121,17 +108,11 @@ Optionally:
 
 📜 View previous chat entries
 
-📸 Screenshots / Demo
+---
+### Live Demo: N/A
 
-Add screenshots here once available.
-
-![Home Screen](./screenshots/home.png)
-![Chat Screen](./screenshots/chat.png)
-
-
-Live Demo: N/A
-
-🛠 Future Enhancements
+---
+### 🛠 Future Enhancements
 
 🔐 Move Gemini API to backend (Node.js/Express)
 
@@ -153,7 +134,9 @@ Live Demo: N/A
 
 📱 PWA Support
 
-🤝 Contributing Guidelines
+---
+
+### 🤝 Contributing Guidelines
 
 Contributions are welcome!
 
@@ -186,31 +169,16 @@ No API keys are committed
 
 Proper commit messages are used
 
-📜 License
+---
+
+## 📜 License
 
 This project is licensed under the MIT License.
 
-👨‍💻 Author
+## 👨‍💻 Author
 
 Krishnakant Kushwaha
 B.Tech IT Student | React Developer | MERN Stack Enthusiast
 
-📧 Email: your-email@example.com
-
-🔗 GitHub: https://github.com/KRISHNAKANT-KUSHWAHA
-
-🔗 LinkedIn: Add Your LinkedIn URL
-
-🌟 Why This Project Stands Out
-
-Real-time streaming AI responses
-
-Modern React architecture using Context API
-
-Clean UI with modular component structure
-
-Scalable for full-stack production deployment
-
-Strong resume project for AI/Frontend roles
 
 If you like this project, don’t forget to ⭐ the repository!
