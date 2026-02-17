@@ -63,7 +63,7 @@ gembot/
 │
 ├── package.json
 └── README.md
-
+---
 
 ⚙️ Installation & Setup
 1️⃣ Clone the Repository
