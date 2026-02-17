@@ -78,7 +78,7 @@
 
 .main-bottom {
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
   max-width: 900px;
   padding: 0px 20px;
@@ -92,7 +92,7 @@
   gap: 20px;
   background-color: #d4e0f8;
   /* background-color: #f0f4f9; */
-  padding: 10px 20px;
+  padding: 10px 15px;
   border-radius: 50px;
 }
 

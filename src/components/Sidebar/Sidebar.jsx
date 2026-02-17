@@ -49,8 +49,6 @@
 
 // export default Sidebar;
 
-
-
 // src/components/Sidebar/Sidebar.jsx
 import React, { useState, useContext } from "react";
 import "./Sidebar.css";
@@ -99,15 +97,15 @@ const Sidebar = () => {
       <div className="bottom">
         <div className="bottom-item recent-entry">
           <img src={assets.question_icon} alt="" />
-          {extend && <p>Help</p>}
+          {extend ? <p>Help</p> : null}
         </div>
         <div className="bottom-item recent-entry">
           <img src={assets.history_icon} alt="" />
-          {extend && <p>Activities</p>}
+          {extend ? <p>Activities</p> : null}
         </div>
         <div className="bottom-item recent-entry">
           <img src={assets.setting_icon} alt="" />
-          {extend && <p>Setting</p>}
+          {extend ? <p>Setting</p> : null}
         </div>
       </div>
     </div>

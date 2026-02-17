@@ -1,13 +1,14 @@
 // GeminiAPI.js
+// npm install @google/generative-ai
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const ai = new GoogleGenerativeAI("AIzaSyB7kIkVqYlTR3lWe90FhKPDfximpv0SKnE"); // replace with your valid key
+const ai = new GoogleGenerativeAI("AIzaSyAy9Yd-BxtoLCz1Ng0-4681bztFfjZ1pvU"); // replace with your valid key
 
 export async function getGeminiResponse(prompt) {
   try {
     const model = ai.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash",
       systemInstruction: `
     Respond to any query or question using full sentences.
     Do not use * or ** for emphasis.
