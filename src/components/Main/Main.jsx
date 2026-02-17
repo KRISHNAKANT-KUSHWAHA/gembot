@@ -1,4 +1,3 @@
-// src/components/Main/Main.jsx
 import { useState, useContext, useEffect } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
@@ -37,18 +36,14 @@ const Main = () => {
     setInput("");
 
     try {
-      // ✅ read file flag and content
-      const hasFile = localStorage.getItem("hasUploadedFile") === "true";
+      // ✅ get file text directly from context or state (NOT localStorage)
+      const fileText = sessionStorage.getItem("uploadedFileText");
 
-      const fileText = localStorage.getItem("uploadedFileText");
+      const isDocumentMode = fileText && fileText.trim().length > 20;
 
-      // ✅ decide prompt
-      const finalPrompt =
-        hasFile && fileText
-          ? `
-You are an AI assistant.
-
-Answer ONLY using the uploaded document below.
+      const finalPrompt = isDocumentMode
+        ? `
+Answer ONLY using the uploaded document.
 
 DOCUMENT:
 ${fileText}
@@ -56,11 +51,10 @@ ${fileText}
 QUESTION:
 ${input}
 
-If the answer is not available in the document,
-reply exactly:
+If answer not in document, reply exactly:
 "The answer is not available in the uploaded file."
 `
-          : input;
+        : input;
 
       const result = await getGeminiResponse(finalPrompt);
 

@@ -3,7 +3,7 @@
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const ai = new GoogleGenerativeAI("AIzaSyAy9Yd-BxtoLCz1Ng0-4681bztFfjZ1pvU"); // replace with your valid key
+const ai = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API); // replace with your valid key
 
 export async function getGeminiResponse(prompt) {
   try {
